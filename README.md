@@ -173,11 +173,17 @@ $ reboot
 ```
 ### 3.- Install and configure display manager, terminal, and window manager
 Display manager             | lightdm
+
 Display manager greeter     | lightdm-gtk-greeter
+
 Window manager              | Qtile
+
 Terminal                    | Alacritty
+
 File manager                | Thunar
+
 Computer theme              | Adwaita-dark
+
 Adwaita-dark comes with gnome-themes-extra
 
 ```bash
