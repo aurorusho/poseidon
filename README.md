@@ -206,6 +206,7 @@ Copy the contents of the next files from this repo to your computer:
 ~/.config/alacritty/alacritty.yml
 
 ~/Desktop/wallpapers/macross.png
+
 ~/Desktop/wallpapers/background.png
 ```bash
 $ reboot
