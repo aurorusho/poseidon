@@ -225,4 +225,6 @@ $ cd visual-studio-code-bin
 $ makepkg -si
 $ cd ../..
 $ rm -r vscode
+$ sudo pacman -S virtualbox # install virtualbox-host-modules
+$ sudo pacman -S linux linux-headers
 ```
