@@ -172,16 +172,13 @@ Reboot and login into your user
 $ reboot
 ```
 ### 3.- Install and configure display manager, terminal, and window manager
+ 
 Display manager             | lightdm
-
+--- | ---
 Display manager greeter     | lightdm-gtk-greeter
-
 Window manager              | Qtile
-
 Terminal                    | Alacritty
-
 File manager                | Thunar
-
 Computer theme              | Adwaita-dark
 
 Adwaita-dark comes with gnome-themes-extra
@@ -207,10 +204,24 @@ Copy the contents of the next files from this repo to your computer:
 ~/.config/qtile/config.py
 
 ~/.config/alacritty/alacritty.yml
-#### .xprofile and .config/qtile/config.py contain specifications of my computer, as the configuration of two monitors, so you may need to change them
+
+~/Desktop/wallpapers/macross.png
+~/Desktop/wallpapers/background.png
+```bash
+$ reboot
+```
+Now, open lxappearance, go to "Widget" and select Adwaita-dark
+###### .xprofile and .config/qtile/config.py contain specifications of my computer, as the configuration of two monitors, so you may need to change them
 
 ### 5.- Install and configure used apps
 ```bash
 $ sudo pacman -S firefox
-$ sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts
+$ sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts # Japanese chars
+$ sudo pacman -S git
+$ mkdir ~/vscode && cd ~/vscode
+$ git clone https://aur.archlinux.org/visual-studio-code-bin.git
+$ cd visual-studio-code-bin
+$ makepkg -si
+$ cd ../..
+$ rm -r vscode
 ```
