@@ -187,7 +187,7 @@ Computer theme              | Adwaita-dark
 Adwaita-dark comes with gnome-themes-extra
 
 ```bash
-$ sudo pacman -S lightdm lightdm-gtk-greeter alacritty qtile dmenu lxappearance thunar 
+$ sudo pacman -S lightdm lightdm-gtk-greeter alacritty qtile dmenu lxappearance thunar gnome-themes-extra
 $ sudo systemctl enable lightdm
 $ reboot
 ``` 
@@ -201,9 +201,13 @@ Install needed packages that error log tells you
 
 ### 4.- Configure colors, alacritty, qtile and lightdm
 Copy the contents of the next files from this repo to your computer:
+
 ~/.xprofile
+
 ~/.config/qtile/config.py
+
 ~/.config/alacritty/alacritty.yml
+#### .xprofile and .config/qtile/config.py contain specifications of my computer, as the configuration of two monitors, so you may need to change them
 
 ### 5.- Install and configure used apps
 ```bash
