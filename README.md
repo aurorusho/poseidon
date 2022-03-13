@@ -148,7 +148,7 @@ If you installed and enabled networkmanager, this should be easy
 ```bash
 $ nmcli r wifi on                                       # Usually not necessary, turn device's wifi on
 $ nmcli d wifi list                                     # Check the exact name of your network
-$ nmcli d nwifi connect <SSID> password <your_password> # Connect to your wifi
+$ nmcli d wifi connect <SSID> password <your_password> # Connect to your wifi
 ```
 ### 2.- Convert your user to superuser
 ```bash
