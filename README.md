@@ -185,7 +185,7 @@ Computer theme              | Adwaita-dark
 Adwaita-dark comes with gnome-themes-extra
 
 ```bash
-$ sudo pacman -S lightdm lightdm-gtk-greeter alacritty qtile dmenu lxappearance thunar gnome-themes-extra xorg-server
+$ sudo pacman -S lightdm lightdm-gtk-greeter alacritty qtile dmenu lxappearance thunar gnome-themes-extra xorg-server xorg-xrandr
 $ sudo systemctl enable lightdm
 $ reboot
 ``` 
