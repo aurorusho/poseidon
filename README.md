@@ -50,6 +50,7 @@ Linux filesystem | The amount you want to give to arch
 # genfstab -U /mnt >> /mnt/etc/fstab
 # arch-chroot /mnt
 $ mkswap /dev/<disk partition containing swap>
+$ swapon /dev/<disk partition containing swap>
 ```
 ### 7.- Install vim and configure files
 ```bash
