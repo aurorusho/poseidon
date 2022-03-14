@@ -234,6 +234,6 @@ $ sudo pacman -S linux linux-headers
 ```
 ### 6.- Configure bluetooth
 ```bash
-$ sudo pacman -S bluez bluez-utils blueman
+$ sudo pacman -S bluez bluez-utils blueman pulseaudio pulseaudio-bluetooth
 $ sudo systemctl enable bluetooth.service
 ```
