@@ -232,3 +232,8 @@ $ rm -r vscode
 $ sudo pacman -S virtualbox # install virtualbox-host-modules
 $ sudo pacman -S linux linux-headers
 ```
+### 6.- Configure bluetooth
+```bash
+$ sudo pacman -S bluez bluez-utils blueman
+$ sudo systemctl enable bluetooth.service
+```
