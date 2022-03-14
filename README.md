@@ -63,12 +63,11 @@ Now, add the following line at the end of your file:
 ```
 And exit vim
 
-Now, configure clock
+Configure clock
 ```bash
 $ ln -sf /usr/share/zoneinfo/<continent>/<timezone> /etc/localtime
 $ hwclock --systohc
 ```
-Replace <continent> and <timezone> with your information.
 
 Now, run
 ```bash
@@ -118,6 +117,10 @@ $ vim /etc/default/grub
 Uncomment the last line, which says
 ```
 GRUB_DISABLE_OS_PROBER=false
+```
+And set timeout to -1
+```
+GRUB_TIMEOUT=-1
 ```
 Continue configuration
 ```bash
