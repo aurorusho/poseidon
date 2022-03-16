@@ -236,4 +236,11 @@ $ sudo pacman -S linux linux-headers
 ```bash
 $ sudo pacman -S bluez bluez-utils blueman pulseaudio pulseaudio-bluetooth
 $ sudo systemctl enable bluetooth.service
+$ reboot
 ```
+```bash
+$ bluetoothctl
+$ [bluetooth]# power on
+$ exit
+```
+Open blueman-manager and connect bluetooth device
