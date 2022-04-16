@@ -11,17 +11,19 @@ Now plug the bootable USB to your computer, start from BIOS, and select it as th
 Select the first option to install x86_64 arch
 ### 2.- Connect to wifi
 ```bash
-# iwctl
+iwctl
+```
+```
 [iwd]# device list
 ```
 Take note of your device used to connect to wifi, it is usually called wlan0
 
 Now, get the name of all the networks to which you can connect
-```bash
+```
 [iwd]# station wlan0 get-networks
 ```
 Now, connect to the network, it will ask you for the password after running the next command, only add it.
-```bash
+```
 [iwd]# station wlan0 connect <SSID>
 ``` 
 ### 3.- Create partitions
@@ -34,28 +36,28 @@ Linux filesystem | The amount you want to give to arch
 
 ### 4.- Configure partitions
 ```bash
-# mkfs.ext4 /dev/<disk partition containing linux filesystem>
-# mkfs.fat -F32 /dev/<disk partition containing EFI filesystem>
+mkfs.ext4 /dev/<disk partition containing linux filesystem>
+mkfs.fat -F32 /dev/<disk partition containing EFI filesystem>
 ```
 
 ### 5.- Mount partitions
 ```bash
-# mount /dev/<disk partition containing linux filesystem> /mnt
-# mkdir /mnt/boot
-# mount /dev/<disk partition containing EFI filesystem> /mnt/boot
+mount /dev/<disk partition containing linux filesystem> /mnt
+mkdir /mnt/boot
+mount /dev/<disk partition containing EFI filesystem> /mnt/boot
 ```
 ### 6.- Install and setup os packages
 ```bash
-# pacstrap /mnt base linux linux-firmware
-# genfstab -U /mnt >> /mnt/etc/fstab
-# arch-chroot /mnt
-$ mkswap /dev/<disk partition containing swap>
-$ swapon /dev/<disk partition containing swap>
+pacstrap /mnt base linux linux-firmware
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+mkswap /dev/<disk partition containing swap>
+swapon /dev/<disk partition containing swap>
 ```
 ### 7.- Install vim and configure files
 ```bash
-$ pacman -S vim
-$ vim /etc/fstab
+pacman -S vim
+vim /etc/fstab
 ```
 Now, add the following line at the end of your file:
 ```
@@ -65,13 +67,13 @@ And exit vim
 
 Configure clock
 ```bash
-$ ln -sf /usr/share/zoneinfo/<continent>/<timezone> /etc/localtime
-$ hwclock --systohc
+ln -sf /usr/share/zoneinfo/<continent>/<timezone> /etc/localtime
+hwclock --systohc
 ```
 
 Now, run
 ```bash
-$ vim /etc/locale.gen
+vim /etc/locale.gen
 ```
 And scroll down until you see
 ```
@@ -81,9 +83,9 @@ And uncomment it.
 
 Now, run
 ```bash
-$ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-$ echo poseidon > /etc/hostname
-$ vim /etc/hosts
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo poseidon > /etc/hostname
+vim /etc/hosts
 ```
 Add the following information to the file:
 ```
@@ -95,24 +97,24 @@ Add the following information to the file:
 ### 8.- Add users and create dual boot
 Add a password to root user
 ```bash
-$ passwd
+passwd
 ```
 Install packages needed for dual boot
 ```bash
-$ pacman -S grub efibootmgr os-prober
+pacman -S grub efibootmgr os-prober
 ```
 Install extra packages you may need
 ```bash
-$ pacman -S networkmanager
+pacman -S networkmanager
 ```
 Mount the EFI system partition you SHOULD HAVE from windows into a directory.
 ```bash
-$ mount /dev/<EFI filesystem windows created> /mnt2
+mount /dev/<EFI filesystem windows created> /mnt2
 ```
 We are ready to configure grub
 ```bash
-$ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-$ vim /etc/default/grub
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+vim /etc/default/grub
 ```
 Uncomment the last line, which says
 ```
@@ -124,22 +126,22 @@ GRUB_TIMEOUT=-1
 ```
 Continue configuration
 ```bash
-$ grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/grub/grub.cfg
 ```
 If you installed network manager, run
 ```bash
-$ systemctl enable NetworkManager
+systemctl enable NetworkManager
 ```
 Now add your user
 ```bash
-$ useradd -mG wheel <your_user>
-$ passwd <your_user>
+useradd -mG wheel <your_user>
+passwd <your_user>
 ```
 ### 9.- Exit and reboot
 ```bash
-$ exit
-$ umount -a
-$ reboot
+exit
+umount -a
+reboot
 ```
 Hopefully, everything goes ok and dual boot is correctly setted up.
 
@@ -149,15 +151,15 @@ Login with root user
 ### 1.- Configure internet again
 If you installed and enabled networkmanager, this should be easy
 ```bash
-$ nmcli r wifi on                                       # Usually not necessary, turn device's wifi on
-$ nmcli d wifi list                                     # Check the exact name of your network
-$ nmcli d wifi connect <SSID> password <your_password> # Connect to your wifi
+nmcli r wifi on                                       # Usually not necessary, turn device's wifi on
+nmcli d wifi list                                     # Check the exact name of your network
+nmcli d wifi connect <SSID> password <your_password> # Connect to your wifi
 ```
 ### 2.- Convert your user to superuser
 ```bash
-$ pacman -Syu
-$ pacman -S sudo
-$ vim /etc/sudoers
+pacman -Syu
+pacman -S sudo
+vim /etc/sudoers
 ```
 Now, uncommment the line which says
 ```
@@ -173,7 +175,7 @@ root ALL=(ALL:ALL) ALL
 ```
 Reboot and login into your user
 ```bash
-$ reboot
+reboot
 ```
 ### 3.- Install and configure display manager, terminal, and window manager
  
@@ -188,15 +190,15 @@ Computer theme              | Adwaita-dark
 Adwaita-dark comes with gnome-themes-extra
 
 ```bash
-$ sudo pacman -S lightdm lightdm-gtk-greeter alacritty qtile dmenu lxappearance thunar gnome-themes-extra xorg-server xorg-xrandr
-$ sudo systemctl enable lightdm
-$ reboot
+sudo pacman -S lightdm lightdm-gtk-greeter alacritty qtile dmenu lxappearance thunar gnome-themes-extra xorg-server xorg-xrandr
+sudo systemctl enable lightdm
+reboot
 ``` 
 
 If everything goes right, proceed with the next step. If lightdm fails, press ctrl+alt+F2
 and run 
 ```bash
-$ sudo lightdm --test-mode --debug 
+sudo lightdm --test-mode --debug 
 ```
 Install needed packages that error log tells you
 
@@ -211,35 +213,38 @@ Copy the contents of the next files from this repo to your computer:
 
 ~/Desktop/wallpapers/background.png
 ```bash
-$ reboot
+reboot
 ```
 Now, open lxappearance, go to "Widget" and select Adwaita-dark
 ###### .xprofile and .config/qtile/config.py contain specifications of my computer, as the configuration of two monitors, so you may need to change them
 
 ### 5.- Install and configure used apps
 ```bash
-$ sudo pacman -S firefox
-$ sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts # Japanese chars
-$ sudo pacman -S git
-$ mkdir ~/vscode && cd ~/vscode
-$ git clone https://aur.archlinux.org/visual-studio-code-bin.git
-$ cd visual-studio-code-bin
-$ makepkg -si
-$ cd ../..
-$ rm -r vscode
-$ sudo pacman -S virtualbox # install virtualbox-host-modules
-$ sudo pacman -S linux linux-headers
+sudo pacman -S firefox
+sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts # Japanese chars
+sudo pacman -S git
+mkdir ~/vscode && cd ~/vscode
+git clone https://aur.archlinux.org/visual-studio-code-bin.git
+cd visual-studio-code-bin
+makepkg -si
+cd ../..
+rm -r vscode
+sudo pacman -S virtualbox # install virtualbox-host-modules
+sudo pacman -S linux linux-headers
 ```
 ### 6.- Configure bluetooth and screenshots
 ```bash
-$ sudo pacman -S bluez bluez-utils blueman pulseaudio pulseaudio-bluetooth
-$ sudo systemctl enable bluetooth.service
-$ echo 'alias blueconf="bluetoothctl && blueman-manager"' >> ~/.bashrc
-$ reboot
+sudo pacman -S bluez bluez-utils blueman pulseaudio pulseaudio-bluetooth
+sudo systemctl enable bluetooth.service
+echo 'alias blueconf="bluetoothctl && blueman-manager"' >> ~/.bashrc
+reboot
 ```
 Run blueconf, "power on" inside bluetoothctl and exit
 ```bash
-$ sudo pacman -S xfce4-clipman-plugin xfce4-screenshooter
+sudo pacman -S xfce4-clipman-plugin xfce4-screenshooter
 ```
-
+Copy ~/.config/qtile/screenshot.sh and
+```bash
+chmod +x ~/.config/qtile/screenshot.sh 
+```
 ## After finishing, copy ~/.xprofile !!
