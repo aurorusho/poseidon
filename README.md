@@ -247,4 +247,7 @@ Copy ~/.config/qtile/screenshot.sh and
 ```bash
 chmod +x ~/.config/qtile/screenshot.sh 
 ```
+Now, go to ~/.config/qtile/config.py, to the end of the keys variable, and
+uncomment the last keybinding, and replace <your_user> with your user
+
 ## After finishing, copy ~/.xprofile !!
