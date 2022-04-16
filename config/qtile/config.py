@@ -76,6 +76,8 @@ keys = [
 
     # Mod + S to change monitor
     Key([mod], "s", lazy.next_screen(), desc="Change to the  other screen"),
+    
+    # Mod + R to run dmenu
     Key([mod], "r", lazy.run_extension(extension.DmenuRun(
         dmenu_prompt=">",
         background="#1D1F21",
@@ -86,6 +88,9 @@ keys = [
         fontsize=10,
         dmenu_lines=42,
     ))),
+    
+    # Mod + shift + S for screenshot
+    # Key([mod, "shift"], "s", lazy.spawn("/home/<your_user>/.config/qtile/screenshot.sh"))
 ]
 
 groups = [Group(i) for i in "123456789"]
