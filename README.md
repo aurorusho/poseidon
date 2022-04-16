@@ -203,8 +203,6 @@ Install needed packages that error log tells you
 ### 4.- Configure colors, alacritty, qtile and lightdm
 Copy the contents of the next files from this repo to your computer:
 
-~/.xprofile
-
 ~/.config/qtile/config.py
 
 ~/.config/alacritty/alacritty.yml
@@ -232,10 +230,16 @@ $ rm -r vscode
 $ sudo pacman -S virtualbox # install virtualbox-host-modules
 $ sudo pacman -S linux linux-headers
 ```
-### 6.- Configure bluetooth
+### 6.- Configure bluetooth and screenshots
 ```bash
 $ sudo pacman -S bluez bluez-utils blueman pulseaudio pulseaudio-bluetooth
 $ sudo systemctl enable bluetooth.service
+$ echo 'alias blueconf="bluetoothctl && blueman-manager"' >> ~/.bashrc
 $ reboot
 ```
-Open blueman-manager and connect bluetooth device
+Run blueconf, "power on" inside bluetoothctl and exit
+```bash
+$ sudo pacman -S xfce4-clipman-plugin xfce4-screenshooter
+```
+
+## After finishing, copy ~/.xprofile !!
